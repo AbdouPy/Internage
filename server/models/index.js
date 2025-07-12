@@ -2,16 +2,22 @@
 const dbConfig = require("../config/db.config.js");
 const { Sequelize, DataTypes } = require("sequelize");
 
+require('dotenv').config();
+const { Sequelize } = require('sequelize');
+
 const sequelize = new Sequelize(
-    dbConfig.DB,
-    dbConfig.USER,
-    dbConfig.PASSWORD,
-    {
-        host: dbConfig.HOST,
-        dialect: dbConfig.dialect,
-        pool: dbConfig.pool
-    }
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: process.env.DB_DIALECT || 'mysql',
+    logging: false,
+  }
 );
+
+module.exports = { sequelize };
 
 const db = {};
 db.Sequelize = Sequelize;
