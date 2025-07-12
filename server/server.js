@@ -28,7 +28,7 @@ app.use("/api/applications", applicationRoutes);
 app.use("/api/assignments", assignmentRoutes);
 
 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
     console.log("✅ Database synced");
 });
 
