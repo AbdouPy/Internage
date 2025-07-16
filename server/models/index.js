@@ -4,6 +4,19 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 require('dotenv').config();
 
+
+async function testConnection() {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection to DB successful.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error.message);
+    // Ne pas planter, juste afficher l'erreur
+  }
+}
+
+testConnection();
+
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
